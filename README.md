@@ -1,37 +1,86 @@
-## Welcome to GitHub Pages
+//************* & operator ***********
+//When & is placed in front of a name during a variable declaration, that
+// means that a "reference to" is being declared.
 
-You can use the [editor on GitHub](https://github.com/GuFranMohammed/GuFranMohammed.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+          int x;
+          int& y = x ;
+          x = 10 ;
+          cout<< y << endl;
+//the output will be the value of x "10" .
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+          int var ;
+          int *ptr;
+          ptr = &var ;
+          var = "Gufran" ;
+ //the output will be the value of var "Gufran" .
 
-### Markdown
+// putting & in front of a variable name denotes "address of" in C++.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+            int a ;
+            cout<< &a << endl ;
 
-```markdown
-Syntax highlighted code block
+//the result of the above expression is an r-value address of a.
 
-# Header 1
-## Header 2
-### Header 3
+//The & (bitwise AND) in C or C++ takes two numbers as operands
+//and does AND on every bit of two numbers.
+//The result of AND is 1 only if both bits are 1. 
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+            // a = 5(00000101), b = 9(00001001)
+            int a = 5, b = 9;
+            cout << (a & b) << endl;
 
-**Bold** and _Italic_ and `Code` text
+//the result is (00000001) = 1 .
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+//**********const key word ************ 
 
-### Jekyll Themes
+//when declaring a const variable this means it can't be modified.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GuFranMohammed/GuFranMohammed.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+                int const x = 5;
+                     or
+                const int x = 4;
+//pointers can be declared as const in two ways
+//1 can't modify what is pointed to.
 
-### Support or Contact
+                const int *p_int;
+//2 can't modify the data pointed to .
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+                int x;
+                int * const p_int = &x;
+//we can use const functions to let the compiler that it's safe to call it from a const object
+//it won't make any changes
+
+                int val = x ; 
+                int getValue() const {
+                    return val; }
+//Const iterators are the as regular one, but you can't modify the underlying date .
+
+                std::vector<int> vec;
+                vec.push_back( 3 );
+                vec.push_back( 4 );
+                vec.push_back( 8 );
+
+                for ( std::vector<int>::const_iterator itr = vec.begin(), end = vec.end();
+                itr != end;
+                     ++itr )
+                    {
+                       // just print out the values...
+                std::cout<< *itr <<std::endl;
+                     }
+//const cast to pass a const variable to a non const function .
+
+                int fun(int* ptr)
+               {
+                return (*ptr + 10);
+               }
+
+               int main(void)
+               {
+               const int val = 10;
+               const int *ptr = &val;
+               int *ptr1 = const_cast <int *>(ptr);
+               cout << fun(ptr1);
+               return 0;
+               }
+
